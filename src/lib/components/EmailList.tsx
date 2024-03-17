@@ -1,5 +1,5 @@
 export const EmailList: React.FC<{
-  emails: { email: string; createdAt: string }[];
+  emails: { email: string; createdAt: Date }[];
 }> = ({ emails }) => {
   return (
     <div className="w-full overflow-auto rounded-lg border border-gray-200 dark:border-gray-700">

@@ -1,11 +1,10 @@
 ---
 import Root from "@/layouts/Root.astro";
-import { parseApiResponse } from "@/lib/helper";
 import { EmailCollect } from "@/lib/components/EmailCollect";
-import { EmailList } from "@/lib/components/EmailList";
-import api from "@/lib/api/client";
+import { EmailList as EmailListComponent } from "@/lib/components/EmailList";
+import { db, EmailList } from "astro:db";
 
-const loadedEmails = await parseApiResponse(api.emails.$get());
+const loadedEmails = await db.select().from(EmailList);
 ---
 
 <Root>
@@ -13,5 +12,5 @@ const loadedEmails = await parseApiResponse(api.emails.$get());
     <h2>SAMPLE EMAIL LIST</h2>
   </nav>
   <EmailCollect client:load />
-  <EmailList emails={loadedEmails.data ? loadedEmails.data.emailList : []} />
+  <EmailListComponent emails={loadedEmails} />
 </Root>
