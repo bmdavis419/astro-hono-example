@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { hc } from "hono/client";
 import emails from "./email";
+import { cors } from "hono/cors";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Middleware                             */
@@ -10,6 +11,8 @@ import emails from "./email";
 /*                                     App                                    */
 /* -------------------------------------------------------------------------- */
 const app = new Hono().basePath("/api");
+
+app.use("/api/*", cors());
 
 /* -------------------------------------------------------------------------- */
 /*                                   Routes                                   */
